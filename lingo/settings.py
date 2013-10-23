@@ -171,6 +171,7 @@ SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
 SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
     'https://www.googleapis.com/auth/plus.login',
+    'https://www.googleapis.com/auth/drive.file',
 ]
 SOCIAL_AUTH_USERNAME_FORM_HTML = 'username_signup.html'
 
