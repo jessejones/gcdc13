@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-from django.contrib.auth.views import logout
 from lingo import views
 
 # Uncomment the next two lines to enable the admin:
@@ -16,7 +15,8 @@ urlpatterns = patterns('',
 
     url(r'^$', views.index, name='index'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^dashboard/$', views.dashboard, name='dashboard'),
+    url(r'^dashboard/$', views.DashboardView.as_view(), name='dashboard'),
+    url(r'^settings/$', views.SettingsView.as_view(), name='settings'),
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login'),
     url(r'', include('social.apps.django_app.urls', namespace='social'))
 )
