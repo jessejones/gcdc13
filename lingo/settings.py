@@ -111,6 +111,7 @@ INSTALLED_APPS = (
     # Python Social Auth
     'social.apps.django_app.default',
     'auth',
+    'app',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

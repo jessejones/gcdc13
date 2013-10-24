@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 def index(request):
     if request.user.is_authenticated():
         return redirect('dashboard')
-    return render(request, 'lingo/index.html')
+    return render(request, 'app/index.html')
 
 class ProtectedView(TemplateView):
     @method_decorator(login_required)
@@ -14,7 +14,7 @@ class ProtectedView(TemplateView):
         return super(ProtectedView, self).dispatch(*args, **kwargs)
 
 class DashboardView(ProtectedView):
-    template_name = 'lingo/dashboard.html'
+    template_name = 'app/dashboard.html'
 
 class SettingsView(ProtectedView):
-    template_name = 'lingo/settings.html'
+    template_name = 'app/settings.html'
