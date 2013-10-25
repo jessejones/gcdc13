@@ -1,6 +1,6 @@
 from django.db import models
 from django import forms
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, m2m_changed
 from django.dispatch import receiver
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
@@ -11,6 +11,9 @@ class Language(models.Model):
 
     def __unicode__(self):
         return self.lang
+
+    class Meta:
+        ordering = ['lang']
 
 class Profile(models.Model):
     user = models.OneToOneField(User, editable=False)
@@ -44,16 +47,37 @@ class ActiveLanguageForm(forms.ModelForm):
 
 @receiver(post_save, sender=User)
 def create_new_profile(sender, created, instance, **kwargs):
+    """
+    Create a profile for new users.
+    """
     if created:
         Profile.objects.create(user=instance).save()
 
 @receiver(post_save, sender=Profile)
-def update_languages(sender, created, instance, **kwargs):
+def update_languages(sender, instance, **kwargs):
+    """
+    Add the active language to the list of selected languages
+    if not already there.
+    """
+    languages = instance.languages.all()
     active_language = instance.active_language
-    if not active_language:
+
+    if not active_language and not languages:
         return
 
     try:
         instance.languages.get(lang=active_language.lang)
     except ObjectDoesNotExist:
         instance.languages.add(active_language)
+
+def languages_changed(sender, instance, **kwargs):
+    """
+    If no active language is set, set that to the first in the list
+    of selected languages.
+    """
+    languages = instance.languages.all()
+    if not instance.active_language and languages:
+        instance.active_language = languages[0]
+        instance.save()
+
+m2m_changed.connect(languages_changed, sender=Profile.languages.through)
