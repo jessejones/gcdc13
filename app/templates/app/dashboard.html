@@ -1,5 +1,30 @@
-<a href="/settings">Settings</a> |
+<a href="/">Lingo</a> |
 <a href="/settings/">{{ user.email }}</a> (<a href="/logout">Logout)</a>
 
 <h1>Dashboard</h1>
-<h2>Hello, {{ user.first_name }}!</h2>
+<b>Hello, {{ user.first_name }}!</b>
+
+<br>
+
+{% if first_language_form %}
+
+  <form action="/dashboard/" method="post">
+    {% csrf_token %}
+    <b>Pick a language and start learning:</b>
+    {{ first_language_form.non_field_errors }}
+    <div class="fieldWrapper">
+      {{ first_language_form.active_language.errors }}
+      {{ first_language_form.active_language }}
+      <input type="submit" value="Go!" />
+    </div>
+  </form>
+
+{% else %}
+
+  <form action="/dashboard/" method="post">
+    {% csrf_token %}
+    {{ active_language_form }}
+    <input type="submit" value="Go!" />
+  </form>
+
+{% endif %}
