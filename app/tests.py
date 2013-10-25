@@ -1,16 +1,32 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
 from django.test import TestCase
+from django.contrib.auth.models import User
+from app.models import Language, Profile
 
+class ProfileTestCase(TestCase):
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
+    def test_add_language_with_no_active_language_set(self):
         """
-        Tests that 1 + 1 always equals 2.
+        When adding languages to a profile with no active language set,
+        active language should be set to the first in the list of languages
+        when ordered alphabetically.
         """
-        self.assertEqual(1 + 1, 2)
+        new_user = User.objects.create(username='user')
+        profile = new_user.profile
+        german = Language.objects.create(lang='German')
+        greek = Language.objects.create(lang='Greek')
+
+        profile.languages.add(german, greek)
+        self.assertEqual(profile.active_language, german)
+
+    def test_set_active_language_and_add_to_profile(self):
+        """
+        When an active language is set, make sure that it is included
+        in the profile's list of languages.
+        """
+        new_user = User.objects.create(username='user')
+        profile = new_user.profile
+        new_language = Language.objects.create(lang='New Language')
+
+        profile.active_language = new_language
+        profile.save()
+        self.assertEqual(profile.languages.all()[0], profile.active_language)
