@@ -1,9 +1,9 @@
 <a href="/">Lingo</a> |
-<a href="/settings/">{{ user.email }}</a> (<a href="/logout">Logout)</a>
+<a href="{% url 'settings' %}">{{ user.email }}</a> (<a href="{% url 'logout' %}">Logout)</a>
 
 <h1>Settings</h1>
 
-<form action="/settings/" method="post">
+<form action="{% url 'settings' %}" method="post">
   {% csrf_token %}
   {{ language_form.as_p }}
   <input type="submit" value="Update" />
