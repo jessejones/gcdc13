@@ -76,7 +76,10 @@ def languages_changed(sender, instance, **kwargs):
     of selected languages.
     """
     languages = instance.languages.all()
-    if not instance.active_language and languages:
+    if languages and (
+        not instance.active_language or
+        instance.active_language not in languages
+    ):
         instance.active_language = languages[0]
         instance.save()
 

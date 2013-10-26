@@ -30,3 +30,21 @@ class ProfileTestCase(TestCase):
         profile.active_language = new_language
         profile.save()
         self.assertEqual(profile.languages.all()[0], profile.active_language)
+
+    def test_remove_active_language_from_languages(self):
+        """
+        When the active language is removed from the profile, set the
+        new active language to the first in the list of languages
+        when ordered alphabetically.
+        """
+        new_user = User.objects.create(username='user')
+        profile = new_user.profile
+        chinese = Language.objects.create(lang='Chinese')
+        english = Language.objects.create(lang='English')
+        french = Language.objects.create(lang='French')
+
+        profile.languages.add(english, french, chinese)
+        profile.active_language = english
+        profile.save()
+        profile.languages.remove(english)
+        self.assertEqual(profile.active_language, chinese)
