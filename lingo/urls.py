@@ -19,4 +19,5 @@ urlpatterns = patterns('',
     url(r'^settings/$', views.SettingsView.as_view(), name='settings'),
     url(r'^logout/$', 'django.contrib.auth.views.logout_then_login', name='logout'),
     url(r'', include('social.apps.django_app.urls', namespace='social')),
+    url(r'^youtube/', include('youtube.urls', namespace='youtube')),
 )

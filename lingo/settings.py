@@ -112,6 +112,7 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'auth',
     'app',
+    'youtube',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
