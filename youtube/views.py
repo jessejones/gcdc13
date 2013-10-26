@@ -20,11 +20,11 @@ def display_results(request, mid):
 
     for search_result in search_response.get("items", []):
         if search_result["id"]["kind"] == "youtube#video":
-            video_ids.append("%s" % search_result["id"]["videoId"])
+            video_ids.append(search_result["id"]["videoId"])
         elif search_result["id"]["kind"] == "youtube#channel":
-            channel_ids.append("%s" % search_result["id"]["channelId"])
+            channel_ids.append(search_result["id"]["channelId"])
         elif search_result["id"]["kind"] == "youtube#playlist":
-            playlist_ids.append("%s" % search_result["id"]["playlistId"])
+            playlist_ids.append(search_result["id"]["playlistId"])
 
     return render (request, 'youtube/results.html', {
         "videos": video_ids,
