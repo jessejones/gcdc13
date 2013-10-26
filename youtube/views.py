@@ -1,7 +1,5 @@
 from django.shortcuts import render
-from os.path import join, dirname
 from apiclient.discovery import build
-from optparse import OptionParser
 from lingo.local_settings import API_KEY
 
 API_SERVICE_NAME = 'youtube'
