@@ -1,0 +1,42 @@
+[
+	{
+		"model": "app.language",
+		"pk": 1,
+		"fields": {
+			"lang": "Chinese",
+			"freebase_id": "/m/0653m"
+		}
+	},
+	{
+		"model": "app.language",
+		"pk": 2,
+		"fields": {
+			"lang": "French",
+			"freebase_id": "/m/064_8sq"			
+		}
+	},
+	{
+		"model": "app.language",
+		"pk": 3,
+		"fields": {
+			"lang": "German",
+			"freebase_id": "/m/04306rv"			
+		}
+	},
+	{
+		"model": "app.language",
+		"pk": 4,
+		"fields": {
+			"lang": "Japanese",
+			"freebase_id": "/m/03_9r"			
+		}
+	},
+	{
+		"model": "app.language",
+		"pk": 5,
+		"fields": {
+			"lang": "Spanish",
+			"freebase_id": "/m/06nm1"			
+		}
+	}
+]
