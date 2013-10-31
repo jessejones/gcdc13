@@ -10,5 +10,9 @@ Hindi
 Italian
 Korean 
 Japanese
+Polish
+Portuguese
 Russian
 Spanish
+Tagalog
+Vietnamese
