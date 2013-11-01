@@ -16,5 +16,6 @@ Polish
 Portuguese
 Russian
 Spanish
+Swedish
 Tagalog
 Vietnamese
