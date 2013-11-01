@@ -1,4 +1,5 @@
 gaenv_lib/
+static/
 local_settings.py
 *.pyc
 *.db
