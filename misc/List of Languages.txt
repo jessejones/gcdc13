@@ -4,9 +4,11 @@ American Sign Language (ASL)
 Arabic
 Chinese
 English
+Finnish
 French
 German
 Hindi
+Icelandic
 Italian
 Korean 
 Japanese
